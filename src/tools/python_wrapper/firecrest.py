@@ -88,10 +88,7 @@ class ExternalUpload(ExternalStorage):
 
     def finish_upload(self):
         link = self.object_storage_data
-        # LOCAL FIX FOR MAC
-        c = link["command"].replace("192.168.220.19", "localhost")
-        # print(link)
-        subprocess.run(shlex.split(c), stdout=subprocess.PIPE)
+        subprocess.run(shlex.split(link["command"]), stdout=subprocess.PIPE)
 
 
 class ExternalDownload(ExternalStorage):
@@ -120,8 +117,7 @@ class ExternalDownload(ExternalStorage):
 
     def finish_download(self, targetname):
         url = self.object_storage_data
-        print(url)
-        # r = requests.get(url)
+        # TODO: doesn't work yet
 
 class Firecrest:
     """Stores all the client information.
